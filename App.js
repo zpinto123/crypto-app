@@ -1,34 +1,83 @@
-import React from "react";
-import { StyleSheet, View, ActivityIndicator } from "react-native";
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
+import { YellowBox } from "react-native";
+import { Navigation } from "react-native-navigation";
 
-import { Watchlist } from "./src/features";
-import { store, persistor } from "./src/redux/store";
+// import { Icon } from "react-native-elements";
+import Icon from "react-native-vector-icons/Ionicons";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
+import registerScreens from "./src/navigation/registerScreens";
 
-export default class App extends React.Component {
-  renderLoading = () => (
-    <View style={styles.container}>
-      <ActivityIndicator size="large" />
-    </View>
-  );
+YellowBox.ignoreWarnings([
+  "Remote debugger is in a background tab which may cause apps to perform slowly.",
+  "Require cycle: node_modules/rn-fetch-blob/index.js",
+  "Require cycle: node_modules/react-native/Libraries/Network/fetch.js"
+]);
 
-  render() {
-    return (
-      <Provider store={store}>
-        <PersistGate persistor={persistor} loading={this.renderLoading()}>
-          <Watchlist />
-        </PersistGate>
-      </Provider>
-    );
-  }
-}
+const setRootBottomTab = () =>
+  Promise.all([
+    Icon.getImageSource("md-cube", 20, "#5a6586"),
+    Icon.getImageSource("md-list-box", 20, "#5a6586"),
+    Icon.getImageSource("md-settings", 20, "#5a6586")
+  ]).then(icons => {
+    Navigation.setRoot({
+      root: {
+        bottomTabs: {
+          id: "rootBottomTab",
+          options: {
+            bottomTabs: {
+              backgroundColor: "#181f31",
+              currentTabIndex: 0,
+              animate: true,
+              titleDisplayMode: "alwaysHide"
+            }
+          },
+          children: [
+            {
+              component: {
+                name: "Watchlist",
+                options: {
+                  bottomTab: {
+                    icon: icons[0],
+                    testID: "Watchlist",
+                    selectedIconColor: "white"
+                  }
+                }
+              }
+            },
+            {
+              component: {
+                name: "Portfolio",
+                options: {
+                  bottomTab: {
+                    icon: icons[1],
+                    testID: "Portfolio",
+                    selectedIconColor: "white"
+                  }
+                }
+              }
+            },
+            {
+              component: {
+                name: "Settings",
+                options: {
+                  bottomTab: {
+                    icon: icons[2],
+                    testID: "Settings",
+                    selectedIconColor: "white"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    });
+  });
+
+const start = () => {
+  registerScreens();
+  Navigation.events().registerAppLaunchedListener(() => {
+    setRootBottomTab();
+  });
+};
+
+export { start };

@@ -6,9 +6,20 @@ export default (state = initialState, action) => {
     case SET_PRICES: {
       const { data } = action.payload;
       console.log("data: ", data);
+      const coinImages = {};
+      data.forEach(coin => {
+        const {
+          CoinInfo: { Name, ImageUrl }
+        } = coin;
+        coinImages[
+          Name.toLowerCase()
+        ] = `https://www.cryptocompare.com${ImageUrl}`;
+      });
+      console.log("coinImages: ", coinImages);
       return {
         ...state,
-        data
+        data,
+        coinImages
       };
     }
     case ERROR_GET_PRICES: {

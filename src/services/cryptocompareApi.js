@@ -1,4 +1,7 @@
-import { fetchData } from "../shared/utils";
+import { apiUtils } from "../utils";
+
+const { fetchData } = apiUtils;
+
 const cryptocompareApi = {
   getAllPrices: () => fetchData(`/data/top/mktcapfull?limit=100&tsym=USD`)
 };

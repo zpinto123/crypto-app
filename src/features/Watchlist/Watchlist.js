@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { View, FlatList, Text } from "react-native";
-import { Button, ListItem, ThemeProvider } from "react-native-elements";
-import { WatchlistItem } from "./parts";
+import { FlatList } from "react-native";
 
-// import { Button, ThemeProvider } from "react-native-elements";
+import { WatchlistItem } from "./parts";
 
 class Watchlist extends Component {
   componentDidMount() {
@@ -15,23 +13,12 @@ class Watchlist extends Component {
 
   render() {
     const { data, error } = this.props;
-    // const {
-    //   CoinInfo: { Name, FullName, ImageUrl },
-    //   RAW: {
-    //     USD: { PRICE }
-    //   }
-    // } = this.props;
     return (
-      <ThemeProvider>
-        <View>
-          <Button title="Hey!" />
-          <FlatList
-            keyExtractor={this.keyExtractor}
-            data={data}
-            renderItem={({ item }) => <WatchlistItem {...item} />}
-          />
-        </View>
-      </ThemeProvider>
+      <FlatList
+        keyExtractor={this.keyExtractor}
+        data={data}
+        renderItem={({ item }) => <WatchlistItem {...item} />}
+      />
     );
   }
 }

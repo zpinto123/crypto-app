@@ -1,30 +1,48 @@
-import { AsyncStorage } from "react-native";
-import { applyMiddleware, createStore, compose } from "redux";
+import React from "react";
+import { ActivityIndicator } from "react-native";
+import { applyMiddleware, createStore } from "redux";
+import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-// import { createLogger } from "redux-logger";
-import { composeWithDevTools } from "redux-devtools-extension";
 import { persistStore, persistReducer } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 import FilesystemStorage from "redux-persist-filesystem-storage";
-// import ExpoFileSystemStorage from "redux-persist-expo-filesystem";
-import { rootReducer } from "./rootReducers";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { createLogger } from "redux-logger";
+
+import rootReducer from "./rootReducers";
+
+import RootContainer from "../common/RootContainer";
 
 const persistConfig = {
   key: "root",
   storage: FilesystemStorage
 };
 
-const middlewares = [];
+const middlewares = [thunk];
 
-// if (__DEV__) {
-//   middlewares.push(createLogger());
-// }
+if (__DEV__) {
+  middlewares.push(createLogger());
+}
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = createStore(
   persistedReducer,
   undefined,
-  composeWithDevTools(applyMiddleware(thunk))
+  composeWithDevTools(applyMiddleware(...middlewares))
 );
 
 export const persistor = persistStore(store);
+
+export const wrapper = Component => () => props => (
+  <Provider store={store}>
+    <PersistGate
+      persistor={persistor}
+      loading={<ActivityIndicator size="large" />}
+    >
+      <RootContainer>
+        <Component {...props} />
+      </RootContainer>
+    </PersistGate>
+  </Provider>
+);

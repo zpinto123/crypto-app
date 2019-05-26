@@ -7,6 +7,7 @@ import Watchlist from "./Watchlist";
 
 const mapStateToProps = state => ({
   data: state.cryptocompare.data,
+  coinImages: state.cryptocompare.coinImages,
   error: state.cryptocompare.error
 });
 
