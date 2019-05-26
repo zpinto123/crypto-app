@@ -1,19 +1,12 @@
 import React, { Component } from "react";
 import { View, FlatList, Text, SafeAreaView } from "react-native";
-// import { Button, ListItem, ThemeProvider } from "react-native-elements";
-
 import { Button, ThemeProvider } from "react-native-elements";
+// import { Button, ListItem, ThemeProvider } from "react-native-elements";
+import * as themes from "../../design/themes";
 
 class Settings extends Component {
-  componentDidMount() {
-    const { data, getCoinPrices } = this.props;
-    if (!data) getCoinPrices();
-  }
-
-  keyExtractor = ({ CoinInfo: { Id } }) => Id;
-
   render() {
-    const { data, error } = this.props;
+    const { setTheme, updateTheme } = this.props;
     // const {
     //   CoinInfo: { Name, FullName, ImageUrl },
     //   RAW: {
@@ -23,7 +16,12 @@ class Settings extends Component {
     return (
       <ThemeProvider>
         <View>
-          <Button title="Settings!" />
+          <Button
+            title="Change theme"
+            onPress={() => {
+              setTheme("LIGHT", updateTheme);
+            }}
+          />
         </View>
       </ThemeProvider>
     );

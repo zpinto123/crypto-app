@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
-// import { getCoinPrices } from "../../redux/modules/cryptocompare/actions";
+import { withTheme } from "react-native-elements";
 
 import Portfolio from "./Portfolio";
 
@@ -21,4 +20,4 @@ const mapDispatchToProps = dispatch =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Portfolio);
+)(withTheme(Portfolio));

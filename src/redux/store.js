@@ -11,7 +11,7 @@ import { createLogger } from "redux-logger";
 
 import rootReducer from "./rootReducers";
 
-import RootContainer from "../common/RootContainer";
+import { RootContainer } from "../common";
 
 const persistConfig = {
   key: "root",

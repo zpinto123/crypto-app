@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { withTheme } from "react-native-elements";
 
 import { getCoinPrices } from "../../redux/modules/cryptocompare/actions";
 
@@ -22,4 +23,4 @@ const mapDispatchToProps = dispatch =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Watchlist);
+)(withTheme(Watchlist));

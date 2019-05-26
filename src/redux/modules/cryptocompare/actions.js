@@ -1,5 +1,7 @@
-import { SET_PRICES, ERROR_GET_PRICES } from "./types";
+import { SET_PRICES, ERROR_GET_PRICES, SET_THEME } from "./types";
 import { cryptocompareApi } from "../../../services";
+import { setRootBottomTab } from "../../../navigation/navigationRoots";
+import * as themes from "../../../design/themes";
 
 export const getCoinPrices = () => async dispatch => {
   try {
@@ -23,4 +25,13 @@ export const getCoinPrices = () => async dispatch => {
       type: ERROR_GET_PRICES
     });
   }
+};
+
+export const setTheme = (themeName, updateTheme) => async dispatch => {
+  updateTheme(themes[themeName]);
+  setRootBottomTab();
+  dispatch({
+    type: SET_THEME,
+    payload: { theme: themes[themeName] }
+  });
 };

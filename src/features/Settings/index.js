@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { withTheme } from "react-native-elements";
 
-import { getCoinPrices } from "../../redux/modules/cryptocompare/actions";
+import { setTheme } from "../../redux/modules/cryptocompare/actions";
 
 import Settings from "./Settings";
 
@@ -13,7 +14,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      getCoinPrices
+      setTheme
     },
     dispatch
   );
@@ -21,4 +22,4 @@ const mapDispatchToProps = dispatch =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Settings);
+)(withTheme(Settings));

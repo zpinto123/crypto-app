@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FlatList } from "react-native";
 
-import { WatchlistItem } from "./parts";
+import { CoinRow } from "../../common";
 
 class Watchlist extends Component {
   componentDidMount() {
@@ -17,7 +17,7 @@ class Watchlist extends Component {
       <FlatList
         keyExtractor={this.keyExtractor}
         data={data}
-        renderItem={({ item }) => <WatchlistItem {...item} />}
+        renderItem={({ item }) => <CoinRow {...item} />}
       />
     );
   }

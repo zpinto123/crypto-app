@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { ThemeProvider } from "react-native-elements";
 
 import { themeUtils } from "../../utils";
+import * as themes from "../../design/themes";
 
 import styles from "./styles";
 
@@ -14,7 +15,7 @@ class RootContainer extends Component {
   render() {
     const { children } = this.props;
     return (
-      <ThemeProvider>
+      <ThemeProvider theme={themes.DARK}>
         <Container>{children}</Container>
       </ThemeProvider>
     );

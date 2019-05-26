@@ -4,21 +4,19 @@ import { wrapper } from "../redux/store";
 
 import { Watchlist, Portfolio, Settings } from "../features";
 
-const screens = [Watchlist, Portfolio, Settings];
+const screens = [
+  { name: "Watchlist", component: Watchlist },
+  { name: "Portfolio", component: Portfolio },
+  { name: "Settings", component: Settings }
+];
 
-const register = Component => {
-  let { displayName } = Component;
-  if (displayName.includes("Connect("))
-    displayName = displayName.substring(8, displayName.length - 1);
-  Navigation.registerComponent(
-    displayName,
-    wrapper(Component),
-    () => Component
-  );
+const register = screen => {
+  const { name, component } = screen;
+  Navigation.registerComponent(name, wrapper(component), () => component);
 };
 
 const registerScreens = () => {
-  screens.forEach(Component => register(Component));
+  screens.forEach(screen => register(screen));
 };
 
 export default registerScreens;

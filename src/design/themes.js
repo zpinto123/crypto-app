@@ -1,8 +1,11 @@
 const LIGHT = {
+  content: {
+    primary: "white"
+  },
   bottomTab: {
-    backgroundColor: "#2b3654",
-    iconColor: "#5a6586",
-    selectedIconColor: "#5a6586"
+    backgroundColor: "white",
+    iconColor: "black",
+    selectedIconColor: "pink"
   }
 };
 
