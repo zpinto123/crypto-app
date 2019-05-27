@@ -15,14 +15,7 @@ class Settings extends Component {
     // } = this.props;
     return (
       <ThemeProvider>
-        <View>
-          <Button
-            title="Change theme"
-            onPress={() => {
-              setTheme("LIGHT", updateTheme);
-            }}
-          />
-        </View>
+        <View />
       </ThemeProvider>
     );
   }

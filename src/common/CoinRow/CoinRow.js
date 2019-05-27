@@ -13,16 +13,12 @@ const { style } = themeUtils;
 
 class CoinRow extends PureComponent {
   render() {
-    const {
-      CoinInfo: { Id, Name, FullName },
-      RAW: {
-        USD: { PRICE }
-      }
-    } = this.props;
-
+    const { Id, Name, FullName, PRICE } = this.props;
+    console.log("coinRow Render");
     return (
       <ListItem
         key={Id}
+        // onPress={handleOnPress}
         leftAvatar={{
           source: cryptoIcons[Name.toLowerCase()] || null,
           renderPlaceholderContent: <PlaceholderIcon name={Name} />
@@ -33,7 +29,6 @@ class CoinRow extends PureComponent {
         containerStyle={{ backgroundColor: "#2b3654" }}
         titleStyle={{ color: "white" }}
         subtitleStyle={{ color: "white" }}
-        // topDivider
         chevron
       />
     );

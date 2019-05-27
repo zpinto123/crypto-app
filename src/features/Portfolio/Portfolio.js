@@ -22,9 +22,7 @@ class Portfolio extends Component {
     // } = this.props;
     return (
       // <ThemeProvider>
-      <View>
-        <Text>HELLO FROM PORTFOLIO</Text>
-      </View>
+      <View />
       // </ThemeProvider>
     );
   }

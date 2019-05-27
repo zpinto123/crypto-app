@@ -6,6 +6,10 @@ const LIGHT = {
     backgroundColor: "white",
     iconColor: "black",
     selectedIconColor: "pink"
+  },
+  topBar: {
+    backgroundColor: "#1d2640",
+    textColor: "white"
   }
 };
 
@@ -17,6 +21,10 @@ const DARK = {
     backgroundColor: "#1d2640",
     iconColor: "#5a6586",
     selectedIconColor: "white"
+  },
+  topBar: {
+    backgroundColor: "#1d2640",
+    textColor: "white"
   }
 };
 

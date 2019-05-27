@@ -2,12 +2,13 @@ import { Navigation } from "react-native-navigation";
 
 import { wrapper } from "../redux/store";
 
-import { Watchlist, Portfolio, Settings } from "../features";
+import { Charts, Watchlist, Portfolio, Settings } from "../features";
 
 const screens = [
   { name: "Watchlist", component: Watchlist },
   { name: "Portfolio", component: Portfolio },
-  { name: "Settings", component: Settings }
+  { name: "Settings", component: Settings },
+  { name: "Charts", component: Charts }
 ];
 
 const register = screen => {

@@ -7,7 +7,22 @@ import * as themes from "../design/themes";
 
 const setRootBottomTab = () => {
   const { theme = themes.DARK } = store.getState().cryptocompare;
-  console.log("store.getState().cryptocompare: ", store.getState());
+  Navigation.setDefaultOptions({
+    topBar: {
+      visible: false,
+      drawBehind: true,
+      animate: false
+    },
+    animations: {
+      push: {
+        waitForRender: true
+      },
+      showModal: {
+        waitForRender: true
+      }
+    }
+  });
+
   Promise.all([
     Icon.getImageSource("md-cube", 20, theme.bottomTab.iconColor),
     Icon.getImageSource("md-list-box", 20, theme.bottomTab.iconColor),
@@ -21,45 +36,90 @@ const setRootBottomTab = () => {
             bottomTabs: {
               backgroundColor: theme.bottomTab.backgroundColor,
               currentTabIndex: 0,
-              animate: true,
+              animate: false,
               titleDisplayMode: "alwaysHide"
             }
           },
           children: [
             {
-              component: {
-                name: "Watchlist",
-                options: {
-                  bottomTab: {
-                    icon: icons[0],
-                    testID: "Watchlist",
-                    selectedIconColor: theme.bottomTab.selectedIconColor
+              stack: {
+                children: [
+                  {
+                    component: {
+                      name: "Watchlist",
+                      options: {
+                        topBar: null,
+                        bottomTab: {
+                          icon: icons[0],
+                          testID: "Watchlist",
+                          selectedIconColor: theme.bottomTab.selectedIconColor
+                        }
+                      }
+                    }
                   }
-                }
+                ]
               }
             },
             {
-              component: {
-                name: "Portfolio",
-                options: {
-                  bottomTab: {
-                    icon: icons[1],
-                    testID: "Portfolio",
-                    selectedIconColor: theme.bottomTab.selectedIconColor
+              stack: {
+                children: [
+                  {
+                    component: {
+                      name: "Portfolio",
+                      options: {
+                        bottomTab: {
+                          icon: icons[1],
+                          testID: "Portfolio",
+                          selectedIconColor: theme.bottomTab.selectedIconColor
+                        },
+                        topBar: {
+                          visible: true,
+                          title: {
+                            text: "Portfolio",
+                            fontSize: 20,
+                            color: theme.topBar.textColor,
+                            fontFamily: "Helvetica",
+                            alignment: "center"
+                          },
+                          background: {
+                            color: theme.topBar.backgroundColor
+                          }
+                        }
+                      }
+                    }
                   }
-                }
+                ]
               }
             },
             {
-              component: {
-                name: "Settings",
-                options: {
-                  bottomTab: {
-                    icon: icons[2],
-                    testID: "Settings",
-                    selectedIconColor: theme.bottomTab.selectedIconColor
+              stack: {
+                children: [
+                  {
+                    component: {
+                      name: "Settings",
+                      options: {
+                        bottomTab: {
+                          icon: icons[2],
+                          testID: "Settings",
+                          selectedIconColor: theme.bottomTab.selectedIconColor
+                        },
+                        topBar: {
+                          visible: true,
+                          title: {
+                            text: "Settings",
+                            fontSize: 20,
+                            color: theme.topBar.textColor,
+                            fontFamily: "Helvetica",
+                            alignment: "center"
+                          },
+                          background: {
+                            color: theme.topBar.backgroundColor
+                          }
+                        }
+                      }
+                    }
                   }
-                }
+                ]
               }
             }
           ]
