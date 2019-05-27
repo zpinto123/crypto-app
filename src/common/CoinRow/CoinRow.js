@@ -33,7 +33,7 @@ class CoinRow extends PureComponent {
         containerStyle={{ backgroundColor: "#2b3654" }}
         titleStyle={{ color: "white" }}
         subtitleStyle={{ color: "white" }}
-        topDivider
+        // topDivider
         chevron
       />
     );

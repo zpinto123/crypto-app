@@ -12,12 +12,17 @@ class Watchlist extends Component {
   keyExtractor = ({ CoinInfo: { Id } }) => Id;
 
   render() {
-    const { data, error } = this.props;
+    const { data } = this.props;
     return (
       <FlatList
         keyExtractor={this.keyExtractor}
         data={data}
         renderItem={({ item }) => <CoinRow {...item} />}
+        getItemLayout={(dt, index) => ({
+          length: 72.9,
+          offset: 72.9 * index,
+          index
+        })}
       />
     );
   }
