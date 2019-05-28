@@ -1,10 +1,10 @@
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { withTheme } from "react-native-elements";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { withTheme } from 'styled-components';
 
-import { setTheme } from "../../redux/modules/cryptocompare/actions";
+import { setTheme } from '../../redux/modules/cryptocompare/actions';
 
-import Settings from "./Settings";
+import Settings from './Settings';
 
 const mapStateToProps = state => ({
   data: state.cryptocompare.data,

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { View, FlatList, Text, SafeAreaView } from "react-native";
+import React, { Component } from 'react';
+import { View, FlatList, Text, SafeAreaView } from 'react-native';
 // import { Button, ListItem, ThemeProvider } from "react-native-elements";
 
 // import { Button, ThemeProvider } from "react-native-elements";
@@ -22,7 +22,9 @@ class Portfolio extends Component {
     // } = this.props;
     return (
       // <ThemeProvider>
-      <View />
+      <View style={{ flex: 1 }}>
+        <Text style={{ color: 'white' }}>OLA</Text>
+      </View>
       // </ThemeProvider>
     );
   }

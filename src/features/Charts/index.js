@@ -1,5 +1,5 @@
-import { withTheme } from "react-native-elements";
+import { withTheme } from 'styled-components';
 
-import Charts from "./Charts";
+import Charts from './Charts';
 
 export default withTheme(Charts);

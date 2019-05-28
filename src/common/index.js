@@ -1,4 +1,5 @@
-import RootContainer from "./RootContainer";
-import CoinRow from "./CoinRow";
+import RootContainer from './RootContainer';
+import CoinRow from './CoinRow';
+import FloatingButton from './FloatingButton';
 
-export { RootContainer, CoinRow };
+export { RootContainer, CoinRow, FloatingButton };

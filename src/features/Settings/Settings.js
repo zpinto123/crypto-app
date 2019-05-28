@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { View, FlatList, Text, SafeAreaView } from "react-native";
-import { Button, ThemeProvider } from "react-native-elements";
+import React, { Component } from 'react';
+import { View, FlatList, Text, SafeAreaView } from 'react-native';
+import { Button, ThemeProvider } from 'react-native-elements';
 // import { Button, ListItem, ThemeProvider } from "react-native-elements";
-import * as themes from "../../design/themes";
+import * as themes from '../../design/themes';
 
 class Settings extends Component {
   render() {
@@ -14,9 +14,9 @@ class Settings extends Component {
     //   }
     // } = this.props;
     return (
-      <ThemeProvider>
-        <View />
-      </ThemeProvider>
+      <View style={{ marginTop: 100 }}>
+        <Button title="Change theme" onPress={() => setTheme('LIGHT')} />
+      </View>
     );
   }
 }

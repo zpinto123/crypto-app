@@ -1,10 +1,10 @@
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { withTheme } from "react-native-elements";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { withTheme } from 'styled-components';
 
-import { getCoinPrices } from "../../redux/modules/cryptocompare/actions";
+import { getCoinPrices } from '../../redux/modules/cryptocompare/actions';
 
-import Watchlist from "./Watchlist";
+import Watchlist from './Watchlist';
 
 const mapStateToProps = state => ({
   data: state.cryptocompare.data,

@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import { FlatList, TouchableHighlight } from "react-native";
-import { Navigation } from "react-native-navigation";
-import { Container, Header, View, Button, Icon, Fab } from "native-base";
+import React, { Component } from 'react';
+import { FlatList, TouchableHighlight } from 'react-native';
+import { Navigation } from 'react-native-navigation';
+import { Container, Header, View, Button, Icon, Fab } from 'native-base';
 
-import { CoinRow } from "../../common";
+import { CoinRow } from '../../common';
 
 class Watchlist extends Component {
   state = { active: false };
 
-  componentDidMount() {
+  componentWillMount() {
     const { data, getCoinPrices } = this.props;
     if (!data) getCoinPrices();
   }
@@ -44,7 +44,7 @@ class Watchlist extends Component {
     const { componentId, theme } = this.props;
     Navigation.push(componentId, {
       component: {
-        name: "Charts",
+        name: 'Charts',
         passProps: {
           coin
         },
@@ -52,11 +52,11 @@ class Watchlist extends Component {
           topBar: {
             visible: true,
             title: {
-              text: "Charts",
+              text: 'Charts',
               fontSize: 20,
               color: theme.topBar.textColor,
-              fontFamily: "Helvetica",
-              alignment: "center"
+              fontFamily: 'Helvetica',
+              alignment: 'center'
             },
             background: {
               color: theme.topBar.backgroundColor
@@ -85,7 +85,7 @@ class Watchlist extends Component {
         <Fab
           direction="up"
           containerStyle={{}}
-          style={{ backgroundColor: "#5067FF" }}
+          style={{ backgroundColor: '#5067FF' }}
           position="bottomRight"
           onPress={null}
         >
