@@ -1,10 +1,10 @@
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { withTheme } from 'styled-components';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { withTheme } from "styled-components";
 
-import { setTheme } from '../../redux/modules/cryptocompare/actions';
+import { setTheme } from "../../redux/modules/cryptocompare/actions";
 
-import RootContainer from './RootContainer';
+import RootContainer from "./RootContainer";
 
 const mapStateToProps = state => ({
   themeSelected: state.cryptocompare.theme
