@@ -3,7 +3,7 @@ import { COLORS } from "./tokens";
 const LIGHT = {
   content: {
     backgroundColor: COLORS.white,
-    textColor: COLORS.orangeMedium
+    textColor: COLORS.navyBlueExtraLight
   },
   bottomTab: {
     backgroundColor: COLORS.wheat,
@@ -12,7 +12,7 @@ const LIGHT = {
   },
   topBar: {
     backgroundColor: COLORS.wheat,
-    textColor: COLORS.orangeMedium
+    textColor: COLORS.navyBlueExtraLight
   }
 };
 
