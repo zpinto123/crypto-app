@@ -13,7 +13,7 @@ const { style } = themeUtils;
 
 class CoinRow extends PureComponent {
   render() {
-    const { Id, Name, FullName, PRICE } = this.props;
+    const { Id, Name, FullName, PRICE, theme } = this.props;
     console.log("coinRow Render");
     return (
       <ListItem
@@ -26,9 +26,9 @@ class CoinRow extends PureComponent {
         title={Name}
         subtitle={FullName}
         rightElement={<Price value={PRICE} />}
-        containerStyle={{ backgroundColor: "#2b3654" }}
-        titleStyle={{ color: "white" }}
-        subtitleStyle={{ color: "white" }}
+        containerStyle={{ backgroundColor: theme.content.backgroundColor }}
+        titleStyle={{ color: theme.content.textColor }}
+        subtitleStyle={{ color: theme.content.textColor }}
         chevron
       />
     );

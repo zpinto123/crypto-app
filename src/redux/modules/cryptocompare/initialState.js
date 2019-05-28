@@ -3,6 +3,6 @@ import * as themes from "../../../design/themes";
 const initialState = {
   data: null,
   error: false,
-  theme: themes.DARK
+  theme: themes.NAVY_BLUE
 };
 export default initialState;

@@ -1,9 +1,9 @@
-import { css } from 'styled-components';
+import { css } from "styled-components";
 
 const styles = {
   container: css`
     flex: 1;
-    background-color: ${props => props.theme.content.primary};
+    background-color: ${props => props.theme.content.backgroundColor};
   `
 };
 

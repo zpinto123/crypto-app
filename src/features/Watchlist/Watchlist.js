@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
-import { FlatList, TouchableHighlight } from 'react-native';
-import { Navigation } from 'react-native-navigation';
-import { Container, Header, View, Button, Icon, Fab } from 'native-base';
+import React, { Component } from "react";
+import { FlatList, TouchableHighlight, Dimensions } from "react-native";
+import { Navigation } from "react-native-navigation";
+import { Container, Header, View, Button, Icon, Fab } from "native-base";
 
-import { CoinRow } from '../../common';
+import { CoinRow } from "../../common";
+
+const { height, width } = Dimensions.get("window");
 
 class Watchlist extends Component {
   state = { active: false };
@@ -44,7 +46,7 @@ class Watchlist extends Component {
     const { componentId, theme } = this.props;
     Navigation.push(componentId, {
       component: {
-        name: 'Charts',
+        name: "Charts",
         passProps: {
           coin
         },
@@ -52,11 +54,11 @@ class Watchlist extends Component {
           topBar: {
             visible: true,
             title: {
-              text: 'Charts',
+              text: "Charts",
               fontSize: 20,
               color: theme.topBar.textColor,
-              fontFamily: 'Helvetica',
-              alignment: 'center'
+              fontFamily: "Helvetica",
+              alignment: "center"
             },
             background: {
               color: theme.topBar.backgroundColor
@@ -73,6 +75,7 @@ class Watchlist extends Component {
 
   render() {
     const { data } = this.props;
+    console.log("Watchlist");
     return (
       <View>
         <FlatList
@@ -82,15 +85,20 @@ class Watchlist extends Component {
           renderItem={this.renderItem}
           getItemLayout={this.getItemLayout}
         />
-        <Fab
+        {/* <Fab
           direction="up"
           containerStyle={{}}
-          style={{ backgroundColor: '#5067FF' }}
+          style={{
+            backgroundColor: theme.bottomTab.backgroundColor,
+            position: "absolute",
+            right: width / 2 - 47,
+            bottom: -60
+          }}
           position="bottomRight"
           onPress={null}
         >
           <Icon name="add" />
-        </Fab>
+        </Fab> */}
       </View>
     );
   }

@@ -9,7 +9,9 @@ class Settings extends Component {
     const { setTheme } = this.props;
     return (
       <View style={{ marginTop: 100 }}>
-        <Button title="Change theme" onPress={() => setTheme("LIGHT")} />
+        <Button title="Light" onPress={() => setTheme("LIGHT")} />
+        <Button title="Navy blue" onPress={() => setTheme("NAVY_BLUE")} />
+        <Button title="Dark gray" onPress={() => setTheme("DARK_GRAY")} />
       </View>
     );
   }

@@ -2,16 +2,21 @@ import { css } from "styled-components";
 
 const styles = {
   container: css`
-    width: 55;
-    height: 55;
+    width: 60;
+    height: 60;
     position: absolute;
     bottom: 10;
-    border-radius: 55;
+    border-radius: 60;
     justify-content: center;
     align-items: center;
     align-self: center;
     z-index: 2;
-    border: 1px solid red;
+    background-color: ${props => props.theme.bottomTab.backgroundColor};
+  `,
+  buttonImage: css`
+    color: white;
+    height: 45;
+    width: 45;
   `
 };
 

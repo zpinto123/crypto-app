@@ -1,31 +1,51 @@
+import { COLORS } from "./tokens";
+
 const LIGHT = {
   content: {
-    primary: "white"
+    backgroundColor: COLORS.white,
+    textColor: COLORS.orangeMedium
   },
   bottomTab: {
-    backgroundColor: "white",
-    iconColor: "black",
-    selectedIconColor: "pink"
+    backgroundColor: COLORS.wheat,
+    iconColor: COLORS.orangeMedium,
+    selectedIconColor: COLORS.orangeLight
   },
   topBar: {
-    backgroundColor: "#1d2640",
-    textColor: "white"
+    backgroundColor: COLORS.wheat,
+    textColor: COLORS.orangeMedium
   }
 };
 
-const DARK = {
+const NAVY_BLUE = {
   content: {
-    primary: "#2b3654"
+    backgroundColor: COLORS.navyBlueLight,
+    textColor: COLORS.white
   },
   bottomTab: {
-    backgroundColor: "#1d2640",
-    iconColor: "#5a6586",
-    selectedIconColor: "white"
+    backgroundColor: COLORS.navyBlueMedium,
+    iconColor: COLORS.navyBlueExtraLight,
+    selectedIconColor: COLORS.white
   },
   topBar: {
-    backgroundColor: "#1d2640",
-    textColor: "white"
+    backgroundColor: COLORS.navyBlueMedium,
+    textColor: COLORS.white
   }
 };
 
-export { LIGHT, DARK };
+const DARK_GRAY = {
+  content: {
+    backgroundColor: COLORS.darkGrayLight,
+    textColor: COLORS.white
+  },
+  bottomTab: {
+    backgroundColor: COLORS.darkGrayMedium,
+    iconColor: COLORS.darkGrayExtraLight,
+    selectedIconColor: COLORS.white
+  },
+  topBar: {
+    backgroundColor: COLORS.darkGrayMedium,
+    textColor: COLORS.white
+  }
+};
+
+export { LIGHT, NAVY_BLUE, DARK_GRAY };

@@ -13,7 +13,7 @@ const styles = {
     line-height: 40;
   `,
   priceText: css`
-    color: white;
+    color: ${props => props.theme.content.textColor};
   `
 };
 

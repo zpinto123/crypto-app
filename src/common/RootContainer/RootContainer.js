@@ -33,8 +33,8 @@ RootContainer.propTypes = {
 };
 
 RootContainer.defaultProps = {
-  theme: themes.DARK,
-  themeSelected: themes.DARK
+  theme: themes.NAVY_BLUE,
+  themeSelected: themes.NAVY_BLUE
 };
 
 export default RootContainer;
