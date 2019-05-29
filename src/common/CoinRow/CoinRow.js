@@ -7,14 +7,25 @@ import cryptoIcons from '../../assets/icons/crypto/color';
 import { valueUtils, themeUtils } from '../../utils';
 
 import styles from './styles';
+import { Left } from 'native-base';
 
 const { parsePrice } = valueUtils;
 const { style } = themeUtils;
 
+const Container = style(View, styles.container);
+const ContentContainer = style(View, styles.contentContainer);
+const LeftContainer = style(View, styles.leftContainer);
+const Icon = style(Image, styles.icon);
+const MiddleContainer = style(View, styles.middleContainer);
+const TitleText = style(Text, styles.titleText);
+const SubtitleText = style(Text, styles.subtitleText);
+const RightContainer = style(View, styles.rightContainer);
+const PriceText = style(Text, styles.priceText);
+
 class CoinRow extends PureComponent {
   render() {
     const { Id, Name, FullName, PRICE, theme } = this.props;
-    console.log('coinRow Render');
+    const icon = cryptoIcons[Name.toLowerCase()];
     return (
       // <ListItem
       //   key={Id}
@@ -31,59 +42,29 @@ class CoinRow extends PureComponent {
       //   subtitleStyle={{ color: theme.content.textColor }}
       //   chevron
       // />
-      <View style={{ backgroundColor: 'orange', height: 100, padding: 10 }}>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'row',
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 5
-            },
-            shadowOpacity: 0.34,
-            shadowRadius: 6.27,
-            backgroundColor: 'white',
-            elevation: 10,
-            borderRadius: 5
-          }}
-        >
-          <View
-            style={{
-              flex: 0.2,
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
-            <Image
-              source={cryptoIcons[Name.toLowerCase()] || null}
-              style={{ height: 40, width: 40 }}
-            />
-          </View>
-          <View
-            style={{
-              flex: 0.6,
-              alignItems: 'flex-start',
-              justifyContent: 'center'
-            }}
-          >
-            <Text>{Name}</Text>
-            <Text>{FullName}</Text>
-          </View>
-          <View
-            style={{
-              flex: 0.2,
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
+      <Container>
+        <ContentContainer>
+          <LeftContainer>
+            {icon ? (
+              <Icon source={cryptoIcons[Name.toLowerCase()] || null} />
+            ) : (
+              <PlaceholderIcon name={Name} />
+            )}
+          </LeftContainer>
+          <MiddleContainer>
+            <TitleText>{Name}</TitleText>
+            <SubtitleText>{FullName}</SubtitleText>
+          </MiddleContainer>
+          <RightContainer>
             <Price value={PRICE} />
-          </View>
-        </View>
-      </View>
+          </RightContainer>
+        </ContentContainer>
+      </Container>
     );
   }
 }
+
+const Price = ({ value }) => <PriceText>{`$${parsePrice(value)}`}</PriceText>;
 
 const PlaceholderContainer = style(View, styles.placeholderContainer);
 const PlaceholderText = style(Text, styles.placeholderText);
@@ -92,12 +73,6 @@ const PlaceholderIcon = ({ name }) => (
   <PlaceholderContainer>
     <PlaceholderText>{name.toUpperCase().substring(0, 3)}</PlaceholderText>
   </PlaceholderContainer>
-);
-
-const PriceText = style(Text, styles.priceText);
-
-const Price = ({ value }) => (
-  <PriceText style={{ color: 'black' }}>{`$${parsePrice(value)}`}</PriceText>
 );
 
 export default CoinRow;
