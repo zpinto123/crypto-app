@@ -1,13 +1,12 @@
-import React, { PureComponent } from 'react';
-import { View, Text, Image } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import React, { PureComponent } from "react";
+import { View, Image } from "react-native";
+import Text from "../Text";
 
-import cryptoIcons from '../../assets/icons/crypto/color';
+import cryptoIcons from "../../assets/icons/crypto/color";
 
-import { valueUtils, themeUtils } from '../../utils';
+import { valueUtils, themeUtils } from "../../utils";
 
-import styles from './styles';
-import { Left } from 'native-base';
+import styles from "./styles";
 
 const { parsePrice } = valueUtils;
 const { style } = themeUtils;

@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
+import { Text } from "../../common";
 
 class Charts extends Component {
   render() {
-    const { Name } = this.props;
+    // const { Name } = this.props;
     return (
       <View>
-        <Text>{Name}</Text>
+        <Text>CHARTS</Text>
       </View>
     );
   }

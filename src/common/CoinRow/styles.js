@@ -1,21 +1,22 @@
-import { css } from 'styled-components';
+import { css } from "styled-components";
+import { common } from "../../constants";
 
 const styles = {
   container: css`
     background-color: ${props => props.theme.content.backgroundColor};
-    height: 100;
-    padding: 10px;
+    height: ${common.ROW_HEIGHT};
+    padding: 5px;
   `,
   contentContainer: css`
     flex: 1;
     flex-direction: row;
-    shadow-color: #000;
-    box-shadow: 0px 5px;
-    shadow-opacity: 0.34;
-    shadow-radius: 6.27;
     background-color: white;
-    elevation: 10;
     border-radius: 5;
+    shadow-color: #000;
+    box-shadow: 0px 2px;
+    shadow-opacity: 0.25;
+    shadow-radius: 3.84;
+    elevation: 5;
   `,
   leftContainer: css`
     flex: 0.2;

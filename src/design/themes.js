@@ -1,6 +1,7 @@
-import { COLORS } from "./tokens";
+import { COLORS, FONT_SIZES } from "./tokens";
 
 const LIGHT = {
+  fontSizes: { ...FONT_SIZES },
   content: {
     backgroundColor: COLORS.white,
     textColor: COLORS.navyBlueExtraLight
@@ -17,6 +18,7 @@ const LIGHT = {
 };
 
 const NAVY_BLUE = {
+  fontSizes: { ...FONT_SIZES },
   content: {
     backgroundColor: COLORS.navyBlueLight,
     textColor: COLORS.white
@@ -33,6 +35,7 @@ const NAVY_BLUE = {
 };
 
 const DARK_GRAY = {
+  fontSizes: { ...FONT_SIZES },
   content: {
     backgroundColor: COLORS.darkGrayLight,
     textColor: COLORS.white

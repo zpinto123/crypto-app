@@ -14,4 +14,10 @@ const COLORS = {
   darkGrayMedium: "#151515"
 };
 
-export { COLORS };
+const FONT_SIZES = {
+  title: 24,
+  subtitle: 20,
+  label: 16
+};
+
+export { COLORS, FONT_SIZES };

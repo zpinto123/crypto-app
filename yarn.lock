@@ -5566,6 +5566,11 @@ react-native-status-bar-height@^2.2.0:
   resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.3.1.tgz#b92ce9112c2367290847ac11284d9d84a6330169"
   integrity sha512-m9nGKYfFn6ljF1abafzF5cFaD9JCzXwj7kNE9CuF+g0TgtItH70eY2uHaCV9moENTftqd5XIS3Cx0mf4WfistA==
 
+react-native-text@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-text/-/react-native-text-0.2.0.tgz#96e69831a8fa441765f0e20fd48b1234a150cde0"
+  integrity sha512-bR7GFoF2sgXP9gHHW5TiBn0DYKEaE/Kh/dlw/Vm5bzlfUGC79csJnN72bRz2FlFHusXQWw20eYtn+fxwWpOw6w==
+
 react-native-vector-icons@6.1.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-6.1.0.tgz#770a3f8ced692d75deb3afbb9829195ceed1eedd"

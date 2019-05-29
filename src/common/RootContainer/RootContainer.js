@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { View } from "react-native";
+import { SafeAreaView, View } from "react-native";
 import { ThemeProvider } from "styled-components";
 
 import { themeUtils } from "../../utils";
@@ -20,9 +20,11 @@ class RootContainer extends Component {
       : {};
 
     return (
-      <ThemeProvider theme={themeSelected}>
-        <Container {...overrideStyles}>{children}</Container>
-      </ThemeProvider>
+      <SafeAreaView style={{ flex: 1 }}>
+        <ThemeProvider theme={themeSelected}>
+          <Container {...overrideStyles}>{children}</Container>
+        </ThemeProvider>
+      </SafeAreaView>
     );
   }
 }

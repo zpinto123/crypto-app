@@ -1,8 +1,5 @@
-import React, { Component } from "react";
-import { View, Text } from "react-native";
 import { Navigation } from "react-native-navigation";
 import Icon from "react-native-vector-icons/Ionicons";
-import { withTheme } from "styled-components";
 import { store } from "../redux/store";
 
 import * as themes from "../design/themes";
@@ -21,12 +18,15 @@ const setLoading = () => {
   });
 };
 
+const getAllBarHeights = () =>
+  new Promise(resolve => resolve(Navigation.constants()));
+
 const setRootBottomTab = () => {
   const { theme = themes.NAVY_BLUE } = store.getState().cryptocompare;
   Navigation.setDefaultOptions({
     topBar: {
       visible: false,
-      drawBehind: true,
+      drawBehind: false,
       animate: false
     }
   });
@@ -54,15 +54,32 @@ const setRootBottomTab = () => {
                 children: [
                   {
                     component: {
-                      name: "Watchlist",
+                      name: "Portfolio",
                       options: {
-                        topBar: null,
                         bottomTab: {
-                          icon: icons[0],
-                          // icon: require("../assets/icons/crypto/other/watchlist.png"),
-                          testID: "Watchlist",
+                          icon: icons[1],
+                          // icon: require("../assets/icons/crypto/other/wallet.png"),
+                          testID: "Portfolio",
                           selectedIconColor: theme.bottomTab.selectedIconColor
+                        },
+                        topBar: {
+                          visible: false,
+                          drawBehind: true,
+                          animate: false
                         }
+                        // topBar: {
+                        //   visible: true,
+                        //   title: {
+                        //     text: "Portfolio",
+                        //     fontSize: 20,
+                        //     color: theme.topBar.textColor,
+                        //     fontFamily: "Helvetica",
+                        //     alignment: "center"
+                        //   },
+                        //   background: {
+                        //     color: theme.topBar.backgroundColor
+                        //   }
+                        // }
                       }
                     }
                   }
@@ -74,26 +91,18 @@ const setRootBottomTab = () => {
                 children: [
                   {
                     component: {
-                      name: "Portfolio",
+                      name: "Watchlist",
                       options: {
-                        bottomTab: {
-                          icon: icons[1],
-                          // icon: require("../assets/icons/crypto/other/wallet.png"),
-                          testID: "Portfolio",
-                          selectedIconColor: theme.bottomTab.selectedIconColor
-                        },
                         topBar: {
-                          visible: true,
-                          title: {
-                            text: "Portfolio",
-                            fontSize: 20,
-                            color: theme.topBar.textColor,
-                            fontFamily: "Helvetica",
-                            alignment: "center"
-                          },
-                          background: {
-                            color: theme.topBar.backgroundColor
-                          }
+                          visible: false,
+                          drawBehind: true,
+                          animate: false
+                        },
+                        bottomTab: {
+                          icon: icons[0],
+                          // icon: require("../assets/icons/crypto/other/watchlist.png"),
+                          testID: "Watchlist",
+                          selectedIconColor: theme.bottomTab.selectedIconColor
                         }
                       }
                     }
@@ -116,6 +125,7 @@ const setRootBottomTab = () => {
                         },
                         topBar: {
                           visible: true,
+                          drawBehind: false,
                           title: {
                             text: "Settings",
                             fontSize: 20,
@@ -152,4 +162,4 @@ const setRootBottomTab = () => {
 //   }
 // });
 
-export { setLoading, setRootBottomTab };
+export { setLoading, setRootBottomTab, getAllBarHeights };

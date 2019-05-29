@@ -15,6 +15,7 @@
     "react-native": "0.59.8",
     "react-native-elements": "^1.1.0",
     "react-native-navigation": "^2.20.2",
+    "react-native-text": "^0.2.0",
     "react-native-vector-icons": "^6.4.2",
     "react-redux": "6.0.1",
     "redux": "^4.0.1",
