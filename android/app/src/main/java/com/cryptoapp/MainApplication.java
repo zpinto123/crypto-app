@@ -3,6 +3,7 @@ package com.cryptoapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.dylanvann.fastimage.FastImageViewPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 
 import com.RNFetchBlob.RNFetchBlobPackage;

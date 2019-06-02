@@ -2,12 +2,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withTheme } from "styled-components";
 
-import { setTheme } from "../../redux/modules/cryptocompare/actions";
+import { setTheme } from "../../redux/modules/properties/actions";
 
 import RootContainer from "./RootContainer";
 
 const mapStateToProps = state => ({
-  themeSelected: state.cryptocompare.theme
+  themeSelected: state.properties.theme
 });
 
 const mapDispatchToProps = dispatch =>

@@ -5,7 +5,7 @@ const styles = {
   container: css`
     background-color: ${props => props.theme.content.backgroundColor};
     height: ${common.ROW_HEIGHT};
-    padding: 5px;
+    padding: 2px;
   `,
   contentContainer: css`
     flex: 1;

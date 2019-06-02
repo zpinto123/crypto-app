@@ -1,21 +1,21 @@
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { withTheme } from 'styled-components';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { withTheme } from "styled-components";
 
-import { getCoinPrices } from '../../redux/modules/cryptocompare/actions';
+import { getAllCoinIds } from "../../redux/modules/coins/actions";
 
-import Watchlist from './Watchlist';
+import Watchlist from "./Watchlist";
 
 const mapStateToProps = state => ({
-  data: state.cryptocompare.data,
-  coinImages: state.cryptocompare.coinImages,
-  error: state.cryptocompare.error
+  data: state.coins.data,
+  coinImages: state.coins.coinImages,
+  error: state.coins.error
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      getCoinPrices
+      getAllCoinIds
     },
     dispatch
   );

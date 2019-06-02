@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { View, Image } from "react-native";
-import { Text } from "../../common";
 
 import { themeUtils } from "../../utils";
 

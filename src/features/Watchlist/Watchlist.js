@@ -11,8 +11,8 @@ class Watchlist extends Component {
   state = { active: false };
 
   componentWillMount() {
-    const { data, getCoinPrices } = this.props;
-    if (!data) getCoinPrices();
+    const { data, getAllCoinIds } = this.props;
+    if (!data) getAllCoinIds();
   }
 
   keyExtractor = ({ CoinInfo: { Id } }) => Id;
@@ -75,7 +75,6 @@ class Watchlist extends Component {
 
   render() {
     const { data } = this.props;
-    console.log("Watchlist");
     return (
       <View>
         <FlatList

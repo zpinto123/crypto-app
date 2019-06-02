@@ -1,3 +1,3 @@
-import cryptocompareApi from "./cryptocompareApi";
+import * as coinsApi from "./coinsApi";
 
-export { cryptocompareApi };
+export { coinsApi };

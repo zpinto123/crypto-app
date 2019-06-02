@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
-import cryptocompare from "./modules/cryptocompare/reducers";
+import coins from "./modules/coins/reducers";
+import properties from "./modules/properties/reducers";
 
 const rootReducer = combineReducers({
-  cryptocompare
+  coins,
+  properties
 });
 
 export default rootReducer;
