@@ -10,4 +10,14 @@ const rmArrayItem = (array, item) => {
   return newArray;
 };
 
-export { rmArrayItem };
+/**
+ * Convert object to array
+ * @param {*} obj - Object to convert to array { bitcoin: {...coin}, ltc: {...coin2} } => [{ ...coin },{ ...coin2 }]
+ */
+const objectToArray = obj => {
+  const result = [];
+  Object.keys(obj).forEach(key => result.push(obj[key]));
+  return result;
+};
+
+export { objectToArray, rmArrayItem };

@@ -29,7 +29,8 @@ const goToAddCoin = async (componentId, props, title) => {
       id: "AddCoin",
       name: "AddCoin",
       passProps: {
-        ...props
+        ...props,
+        fromScreen: componentId
       },
       options: {
         topBar: {

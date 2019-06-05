@@ -5,16 +5,16 @@ import {
   ADD_COIN_TO_WATCHLIST,
   REMOVE_COIN_FROM_WATCHLIST,
   ADD_COIN_TO_PORTFOLIO,
-  REMOVE_COIN_FROM_PORTFOLIO
+  REMOVE_COIN_FROM_PORTFOLIO,
+  CHANGE_PORTFOLIO_NAME,
+  REMOVE_PORTFOLIO
 } from "./types";
 import initialState from "./initialState";
 
-import { collectionUtils } from "../../../utils";
-
-const { rmArrayItem } = collectionUtils;
-
 export default (state = initialState, action) => {
   switch (action.type) {
+    /** ALL COIN IDS */
+
     case ADD_ALL_COIN_IDS: {
       const { allCoinIds } = action.payload;
       return {
@@ -23,70 +23,99 @@ export default (state = initialState, action) => {
       };
     }
 
-    case ADD_COIN_TO_LIST: {
-      const { coin } = action.payload;
-      const list = { ...state.list };
-      list[coin.Id] = coin;
-      return {
-        ...state,
-        list
-      };
-    }
-
-    case REMOVE_COIN_FROM_LIST: {
-      const { coinId } = action.payload;
-      const list = { ...state.list };
-      delete list[coinId];
-      return {
-        ...state,
-        list
-      };
-    }
+    /** WATCHLIST */
 
     case ADD_COIN_TO_WATCHLIST: {
-      const { coinId } = action.payload;
-      const watchlist = [...state.watchlist];
-      if (!watchlist.includes(coinId)) watchlist.push(coinId);
+      const { coin } = action.payload;
       return {
         ...state,
-        watchlist
+        watchlist: {
+          ...state.watchlist,
+          [coin.id]: { ...coin }
+        }
       };
     }
 
     case REMOVE_COIN_FROM_WATCHLIST: {
       const { coinId } = action.payload;
-      const watchlist = rmArrayItem([...state.watchlist], coinId);
+      const watchlist = { ...state.watchlist };
+      delete watchlist[coinId];
       return {
         ...state,
         watchlist
       };
     }
 
-    case ADD_COIN_TO_PORTFOLIO: {
-      const { portfolioId, coinId } = action.payload;
-      const portfolios = { ...(state.portfolios || {}) };
+    // watchlist: {
+    //   bitcoin: { id: "bitcoin", name: "Bitcoin", symbol: "btc", price: 8254 }
+    // },
+    // portfolios: {
+    //   p1: {
+    //     id: "p1",
+    //     name: "My Portfolio",
+    //     coins: {
+    //       bitcoin: {
+    //         id: "bitcoin",
+    //         name: "Bitcoin",
+    //         symbol: "btc",
+    //         price: 8254,
+    //         totalAmount: 20,
+    //         transactions: [{ id: 1, exchange: "Kraken", amount: 5, price: 2700 }]
+    //       }
+    //     }
+    //   }
+    // }
+
+    /** PORTFOLIO */
+
+    case CHANGE_PORTFOLIO_NAME: {
+      const { portfolioId, name } = action.payload;
+      const portfolios = { ...state.portfolios };
       const portfolio = portfolios[portfolioId];
-      if (portfolio && !portfolio.list.includes(coinId)) {
-        portfolio.list.push(coinId);
-        portfolios[portfolioId] = portfolio;
-      }
+      portfolio.name = name;
+
+      return {
+        ...state,
+        portfolios: { ...portfolios, [portfolioId]: portfolio }
+      };
+    }
+
+    case REMOVE_PORTFOLIO: {
+      const { portfolioId } = action.payload;
+      const portfolios = { ...state.portfolios };
+      delete portfolios[portfolioId];
+
       return {
         ...state,
         portfolios
       };
     }
 
-    case REMOVE_COIN_FROM_PORTFOLIO: {
-      const { portfolioId, coinId } = action.payload;
-      const portfolios = { ...(state.portfolios || {}) };
+    case ADD_COIN_TO_PORTFOLIO: {
+      const { portfolioId, coin } = action.payload;
+      const portfolios = { ...state.portfolios };
       const portfolio = portfolios[portfolioId];
-      if (portfolio && portfolio.list.includes(coinId)) {
-        portfolio.list = rmArrayItem(portfolio.list, coinId);
-        portfolios[portfolioId] = portfolio;
-      }
+
+      portfolio.coins = {
+        ...portfolio.coins,
+        [coin.id]: { ...coin, totalAmount: 0, transactions: [] }
+      };
+
       return {
         ...state,
-        portfolios
+        portfolios: { ...portfolios, [portfolioId]: portfolio }
+      };
+    }
+
+    case REMOVE_COIN_FROM_PORTFOLIO: {
+      const { portfolioId, coinId } = action.payload;
+      const portfolios = { ...state.portfolios };
+      const portfolio = portfolios[portfolioId];
+      delete portfolio.coins[coinId];
+
+      return {
+        ...state,
+        portfolios: { ...portfolios, [portfolioId]: portfolio }
       };
     }
 

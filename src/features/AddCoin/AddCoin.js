@@ -23,9 +23,16 @@ class AddCoin extends Component {
   // };
 
   render() {
-    const { componentId, allCoinIds } = this.props;
+    const { fromScreen, componentId, allCoinIds } = this.props;
 
-    return <CoinList data={allCoinIds} componentId={componentId} withSearch />;
+    return (
+      <CoinList
+        data={allCoinIds}
+        componentId={componentId}
+        fromScreen={fromScreen}
+        withSearch
+      />
+    );
   }
 }
 

@@ -5,41 +5,41 @@ import { debounce } from "lodash";
 
 import CoinRow from "../CoinRow";
 
-import { themeUtils } from "../../utils";
+import { themeUtils, collectionUtils } from "../../utils";
 import { common } from "../../constants";
 import { goToCoinDetails } from "../../navigation/navigationRoots";
 
 import styles from "./styles";
 
+const { objectToArray } = collectionUtils;
 const { style } = themeUtils;
 
 const Container = style(View, styles.container);
 const SearchBar = style(SearchComp, styles.search);
 
 class CoinList extends Component {
+  // static getDerivedStateFromProps(nextProps, prevState) {
+  //   console.log("getDerivedStateFromProps", nextProps, prevState);
+  //   //   if(nextProps.someValue!==prevState.someValue){
+  //   //     return { someState: nextProps.someValue};
+  //   //  }
+  //   return null;
+  // }
+
   constructor(props) {
     super(props);
-    this.handleOnSearch = debounce(this.handleOnSearch, 500);
+
+    const { data } = props;
+    this.state = {
+      data: objectToArray(data),
+      searchText: "",
+      searchResults: null
+    };
+    this.handleOnSearch = debounce(this.handleOnSearch, 1000);
   }
 
-  state = {
-    searchText: "",
-    searchResults: null,
-    deleteMode: false,
-    deleteSelected: []
-  };
-
-  handleOnDeleteModeChange = deleteMode => this.setState({ deleteMode });
-
-  handleSelectedForDelete = coinId => {
-    const { deleteSelected } = this.state;
-    const newDeleteSelected = [...deleteSelected, coinId];
-    this.setState({ deleteSelected: newDeleteSelected });
-  };
-
   handleOnSearch = search => {
-    const { data } = this.props;
-    console.log("data handleOnSearch: ", data);
+    const { data } = this.state;
     if (!search || !search.length) return;
     const searchUpper = search.toUpperCase();
     const searchResults = [];
@@ -76,31 +76,29 @@ class CoinList extends Component {
   };
 
   renderItem = ({ item }) => {
-    const { componentId } = this.props;
-    const { id, symbol, name } = item;
-    const { deleteMode, deleteSelected, handleOnPress = () => {} } = this.state;
+    const { withSearch, componentId, fromScreen } = this.props;
+    const { id, symbol, name, price } = item;
+    console.log("item: ", item);
+    const { handleOnPress = () => {} } = this.state;
     return (
       <CoinRow
-        addCoin
+        addCoin={withSearch}
         id={id}
         symbol={symbol}
         name={name}
+        price={price}
         componentId={componentId}
+        fromScreen={fromScreen}
         // handleOnPress={handleOnPress(Name)}
-        handleOnDeleteModeChange={this.handleOnDeleteModeChange}
-        handleSelectedForDelete={this.handleSelectedForDelete}
-        deleteSelected={deleteSelected}
-        deleteMode={deleteMode}
         handleOnRowPress={this.handleOnRowPress(item)}
       />
     );
   };
 
   render() {
-    const { data, theme, withSearch = false } = this.props;
-    const { searchText, searchResults } = this.state;
-    console.log("this.test: ", this.test);
-
+    const { theme, withSearch = false } = this.props;
+    const { data, searchText, searchResults } = this.state;
+    console.log("data handleOnSearch: ", data);
     return (
       <Container>
         <FlatList
@@ -125,7 +123,7 @@ class CoinList extends Component {
           }
           initialNumToRender={10}
           keyExtractor={this.keyExtractor}
-          data={searchResults}
+          data={withSearch ? searchResults : data}
           renderItem={this.renderItem}
         />
       </Container>

@@ -5,7 +5,9 @@ import {
   ADD_COIN_TO_WATCHLIST,
   REMOVE_COIN_FROM_WATCHLIST,
   ADD_COIN_TO_PORTFOLIO,
-  REMOVE_COIN_FROM_PORTFOLIO
+  REMOVE_COIN_FROM_PORTFOLIO,
+  CHANGE_PORTFOLIO_NAME,
+  REMOVE_PORTFOLIO
 } from "./types";
 import { coinsApi } from "../../../services";
 
@@ -22,27 +24,13 @@ export const getAllCoinIds = () => async dispatch => {
   }
 };
 
-export const addCoinToList = id => async dispatch => {
-  console.log("coin to get: ", id);
-  const coinInfo = await coinsApi.getCoinInfoById(id);
-  console.log("addCoinToList: ", coinInfo);
-  // dispatch({
-  //   type: ADD_COIN_TO_LIST,
-  //   payload: { coin }
-  // });
-};
-
-export const removeCoinFromList = coinId => async dispatch => {
-  dispatch({
-    type: REMOVE_COIN_FROM_LIST,
-    payload: { coinId }
-  });
-};
+/** WATCHLIST */
 
 export const addCoinToWatchlist = coinId => async dispatch => {
+  const coin = await coinsApi.getCoinInfoById(coinId);
   dispatch({
     type: ADD_COIN_TO_WATCHLIST,
-    payload: { coinId }
+    payload: { coin }
   });
 };
 
@@ -53,10 +41,13 @@ export const removeCoinFromWatchlist = coinId => async dispatch => {
   });
 };
 
-export const addCoinToPortfolio = (portfolioId, coinId) => async dispatch => {
+/** PORTFOLIO */
+
+export const addCoinToPortfolio = (portfolioId, id) => async dispatch => {
+  const coin = await coinsApi.getCoinPrices("usd", [id]);
   dispatch({
     type: ADD_COIN_TO_PORTFOLIO,
-    payload: { portfolioId, coinId }
+    payload: { portfolioId, coin: { ...coin, price: coin.current_price } }
   });
 };
 
@@ -67,5 +58,19 @@ export const removeCoinFromPortfolio = (
   dispatch({
     type: REMOVE_COIN_FROM_PORTFOLIO,
     payload: { portfolioId, coinId }
+  });
+};
+
+export const changePortfolioName = (portfolioId, name) => async dispatch => {
+  dispatch({
+    type: CHANGE_PORTFOLIO_NAME,
+    payload: { portfolioId, name }
+  });
+};
+
+export const removePortfolio = portfolioId => async dispatch => {
+  dispatch({
+    type: REMOVE_PORTFOLIO,
+    payload: { portfolioId }
   });
 };

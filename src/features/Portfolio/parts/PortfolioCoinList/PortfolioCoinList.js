@@ -13,10 +13,11 @@ const Container = style(View, styles.container);
 
 class PortfolioCoinList extends Component {
   render() {
-    const { data } = this.props;
+    const { portfolio } = this.props;
+    console.log("portfolioCoinList: ", portfolio.coins);
     return (
       <Container>
-        <CoinList data={data} componentId="Portfolio" />
+        <CoinList data={portfolio.coins} componentId="Portfolio" />
       </Container>
     );
   }

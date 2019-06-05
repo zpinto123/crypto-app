@@ -1,18 +1,22 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withTheme } from "styled-components";
-import { addCoinToList } from "../../redux/modules/coins/actions";
+import {
+  addCoinToPortfolio,
+  addCoinToWatchlist
+} from "../../redux/modules/coins/actions";
 
 import CoinRow from "./CoinRow";
 
 const mapStateToProps = state => ({
-  list: state.coins.list
+  selectedPortfolioId: state.coins.selectedPortfolioId
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      addCoinToList
+      addCoinToPortfolio,
+      addCoinToWatchlist
     },
     dispatch
   );

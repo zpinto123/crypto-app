@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { View, TouchableWithoutFeedback, TouchableOpacity } from "react-native";
+import { Navigation } from "react-native-navigation";
 import FastImage from "react-native-fast-image";
 
 import IonIcons from "react-native-vector-icons/Ionicons";
@@ -28,22 +29,25 @@ const AddCoinIcon = () => (
 );
 class CoinRow extends Component {
   shouldComponentUpdate(nextProps) {
-    const { PRICE, addCoin } = this.props;
+    const { price } = this.props;
     // if (addCoin) return false;
-    if (nextProps.PRICE !== PRICE) return true;
+    if (nextProps.price !== price) return true;
     return false;
   }
 
-  handleDeleteMode = value => () => {
-    const { handleOnDeleteModeChange } = this.props;
-    handleOnDeleteModeChange(value);
-  };
-
   handleAddCoin = id => () => {
-    const { componentId, addCoinToList } = this.props;
-    console.log("handleAddCoin id: ", id);
-    if (componentId === "AddCoin") addCoinToList(id);
-    else if (componentId === "Watchlist") return;
+    const {
+      fromScreen,
+      componentId,
+      addCoinToPortfolio,
+      addCoinToWatchlist,
+      selectedPortfolioId
+    } = this.props;
+
+    if (fromScreen === "Portfolio") {
+      addCoinToPortfolio(selectedPortfolioId, id);
+      Navigation.popToRoot(componentId);
+    } else if (fromScreen === "Watchlist") addCoinToWatchlist(id);
   };
 
   render() {
@@ -61,12 +65,7 @@ const AddCoinRow = ({ id, symbol, name, handleOnRowPress, handleAddCoin }) => (
         <LeftContainer>
           {cryptoIcons[symbol.toLowerCase()] ? (
             // <Icon source={cryptoIcons[symbol.toLowerCase()] || null} />
-            <Icon
-              source={{
-                uri: cryptoIcons[symbol.toLowerCase()] || null,
-                priority: FastImage.priority.normal
-              }}
-            />
+            <Icon source={cryptoIcons[symbol.toLowerCase()] || null} />
           ) : (
             <PlaceholderIcon name={symbol} />
           )}
@@ -85,28 +84,23 @@ const AddCoinRow = ({ id, symbol, name, handleOnRowPress, handleAddCoin }) => (
   </TouchableWithoutFeedback>
 );
 
-const DefaultRow = ({ Name, FullName, PRICE, handleOnRowPress }) => (
+const DefaultRow = ({ id, symbol, name, price, handleOnRowPress }) => (
   <TouchableWithoutFeedback onPress={handleOnRowPress}>
     <Container>
       <ContentContainer>
         <LeftContainer>
-          {cryptoIcons[Name.toLowerCase()] ? (
-            <Icon
-              source={{
-                uri: cryptoIcons[Name.toLowerCase()] || null,
-                priority: FastImage.priority.normal
-              }}
-            />
+          {cryptoIcons[symbol] ? (
+            <Icon source={cryptoIcons[symbol] || null} />
           ) : (
-            <PlaceholderIcon name={Name} />
+            <PlaceholderIcon name={symbol} />
           )}
         </LeftContainer>
         <MiddleContainer>
-          <TitleText>{Name}</TitleText>
-          <SubtitleText>{FullName}</SubtitleText>
+          <TitleText>{name}</TitleText>
+          <SubtitleText>{name}</SubtitleText>
         </MiddleContainer>
         <RightContainer>
-          <Price value={PRICE} />
+          <Price value={price} />
         </RightContainer>
       </ContentContainer>
     </Container>

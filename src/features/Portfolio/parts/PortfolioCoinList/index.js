@@ -4,10 +4,13 @@ import { withTheme } from "styled-components";
 
 import PortfolioCoinList from "./PortfolioCoinList";
 
-const mapStateToProps = state => ({
-  data: state.coins.data,
-  error: state.coins.error
-});
+const mapStateToProps = state => {
+  const id = state.coins.selectedPortfolioId;
+  return {
+    portfolio: state.coins.portfolios[id],
+    error: state.coins.error
+  };
+};
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
